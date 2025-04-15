@@ -1,0 +1,17 @@
+# .github/workflows/zip-template.yml
+name: Package Template
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  zip-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: zip -r template.zip . -x "*.git*" -x "*.DS_Store"
+      - name: Upload to GitHub Release (or Pages)
+        uses: softprops/action-gh-release@v1
+        with:
+          files: template.zip
