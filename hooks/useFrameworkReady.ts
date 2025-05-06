@@ -1,8 +1,13 @@
 import { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    frameworkReady?: () => void;
+  }
+}
+
 export function useFrameworkReady() {
   useEffect(() => {
-    console.log('Framework is ready!');
-    // Add any framework initialization logic here if needed
-  }, []);
+    window.frameworkReady?.();
+  });
 }
